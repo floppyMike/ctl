@@ -1,3 +1,9 @@
+use std::ops::Add;
+
+// -----------------------------------------------------------------------------
+// GCD
+// -----------------------------------------------------------------------------
+
 /// Calculates the gcd of 2 values
 ///
 /// # Arguments
@@ -80,6 +86,51 @@ pub fn extended_gcd(mut a: i32, mut b: i32) -> (i32, i32, i32)
 		b = r;
 	}
 }
+
+// -----------------------------------------------------------------------------
+// Fraction
+// -----------------------------------------------------------------------------
+
+#[derive(Clone, Copy)]
+struct Fraction
+{
+	q: i32,
+	d: i32,
+}
+
+impl Fraction
+{
+    /// Convert fraction to floating point representation.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use ctl::math::Fraction;
+    /// let f = Fraction { q: 1, d: 4 };
+    /// let r = f.to_f64(); // Outputs .25
+    /// ```
+	fn to_f64(&self) -> f64
+	{
+		return self.q as f64 / self.d as f64;
+	}
+}
+
+impl Add for Fraction
+{
+	type Output = Fraction;
+
+	fn add(self, rhs: Self) -> Self::Output
+	{
+		Fraction {
+			q: self.q + rhs.q,
+			d: self.d + rhs.d,
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Tests
+// -----------------------------------------------------------------------------
 
 #[cfg(test)]
 mod tests
