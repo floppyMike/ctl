@@ -91,7 +91,7 @@ pub fn extended_gcd(mut a: i32, mut b: i32) -> (i32, i32, i32)
 // Fraction
 // -----------------------------------------------------------------------------
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 struct Fraction
 {
 	q: i32,
